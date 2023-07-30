@@ -24,3 +24,4 @@ config-prod.yaml
 .keep
 docs/
 log/
+*.log

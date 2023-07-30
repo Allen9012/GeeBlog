@@ -2,14 +2,14 @@ package controller
 
 import (
 	"errors"
-	"github.com/Allen9012/gee_blog/utils"
+	. "github.com/Allen9012/gee_blog/common"
 	"github.com/gin-gonic/gin"
 )
 
 var ErrorIdNotExist = errors.New("用户不可用")
 
 func getUserId(c *gin.Context) (int64, error) {
-	value, exist := c.Get(utils.KeyUserId)
+	value, exist := c.Get(KeyUserId)
 	if !exist {
 		return -1, ErrorIdNotExist
 	}

@@ -28,7 +28,7 @@ type GormLogger struct {
 
 func NewGormLogger() GormLogger {
 	return GormLogger{
-		ZapLogger:     lg,
+		ZapLogger:     Logger,
 		SlowThreshold: 200 * time.Millisecond,
 	}
 }

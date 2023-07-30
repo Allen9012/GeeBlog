@@ -3,7 +3,6 @@ package router
 import (
 	"github.com/Allen9012/gee_blog/controller"
 	"github.com/Allen9012/gee_blog/middleware"
-	"github.com/Allen9012/gee_blog/utils/logger"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,7 +13,7 @@ func NewRouter() *gin.Engine {
 	// 中间件, 顺序不能改
 	//r.Use(middleware.Session(os.Getenv("SESSION_SECRET")))
 	//r.Use(middleware.Cors())
-	r.Use(logger.GinLogger(), logger.GinRecovery(true), middleware.Cors_gee, middleware.RefreshToken)
+	r.Use(middleware.GinLogger(), middleware.GinRecovery(true), middleware.Cors_gee, middleware.RefreshToken)
 	//r.Use(middleware.CurrentUser()) // 暂时不用
 
 	// 配置swagger文档

@@ -2,7 +2,6 @@ package mysql
 
 import (
 	"fmt"
-	. "github.com/Allen9012/gee_blog/common"
 	"github.com/Allen9012/gee_blog/model"
 	"github.com/Allen9012/gee_blog/utils/conf"
 	"github.com/Allen9012/gee_blog/utils/logger"
@@ -24,7 +23,7 @@ var db *gorm.DB
 
 func Init(cfg *conf.MySQLConfig) (err error) {
 	if cfg == nil {
-		zap.L().Error("[dao mysql Init] invalid config")
+		logger.Error("[dao mysql Init] invalid config")
 		return
 	}
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True",
@@ -40,19 +39,19 @@ func Init(cfg *conf.MySQLConfig) (err error) {
 		SkipDefaultTransaction: true,
 	})
 	if err != nil {
-		zap.L().Error("[dao mysql Init] connect mysql error ", zap.Error(err))
+		logger.Error("[dao mysql Init] connect mysql error ", zap.Error(err))
 		return
 	}
 	//	自动cc迁移
 	err = db.AutoMigrate(&model.User{}, &model.Post{})
 	if err != nil {
-		zap.L().Info("[dao mysql Init] create table failed ", zap.Error(err))
+		logger.Info("[dao mysql Init] create table failed ", zap.Error(err))
 		return err
 	}
 
 	conn, err := db.DB()
 	if err != nil {
-		zap.L().Info("[dao mysql Init] get sql instance failed ", zap.Error(err))
+		logger.Info("[dao mysql Init] get sql instance failed ", zap.Error(err))
 		return err
 	}
 	conn.SetMaxOpenConns(cfg.MaxOpenConn)
@@ -62,7 +61,7 @@ func Init(cfg *conf.MySQLConfig) (err error) {
 
 func Close() {
 	conn, err := db.DB()
-	zap.L().Info("[dao mysql Close] get sql instance failed ", zap.Error(err))
+	logger.Info("[dao mysql Close] get sql instance failed ", zap.Error(err))
 	err = conn.Close()
-	zap.L().Info("[dao mysql Close] close the mysql connect failed ", zap.Error(err))
+	logger.Info("[dao mysql Close] close the mysql connect failed ", zap.Error(err))
 }

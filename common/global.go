@@ -15,3 +15,14 @@ import (
 var (
 	Conf = new(conf.AppConfig)
 )
+
+//var (
+//	DB      *gorm.DB
+//	ELASTIC *elasticsearch.Client
+//	REIDS   *redis.Client
+//	VP      *viper.Viper
+//	CONFIG  config.Server
+//	I18N    *i18n.Bundle
+//	LOG     *zap.Logger
+//	QUEST   *dataframe.DataFrame
+//)

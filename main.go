@@ -25,5 +25,6 @@ func main() {
 	//docs.SwaggerInfo.BasePath = "/api/v1"
 	// 装载路由
 	r := router.NewRouter()
+
 	r.Run(":3000")
 }
