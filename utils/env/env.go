@@ -1,8 +1,6 @@
 package env
 
-import (
-	. "github.com/Allen9012/gee_blog/common"
-)
+import "github.com/Allen9012/gee_blog/common"
 
 /**
   Copyright © 2023 github.com/Allen9012 All rights reserved.
@@ -13,13 +11,13 @@ import (
 **/
 
 func IsDev() bool {
-	return Conf.Env == "dev"
+	return common.GEE_CONFIG.Env == "dev"
 }
 
 func IsProd() bool {
-	return Conf.Env == "prod"
+	return common.GEE_CONFIG.Env == "prod"
 }
 
 func IsTesting() bool {
-	return Conf.Env == "test"
+	return common.GEE_CONFIG.Env == "test"
 }

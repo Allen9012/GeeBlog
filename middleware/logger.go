@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"bytes"
-	"github.com/Allen9012/gee_blog/utils/logger"
+	"github.com/Allen9012/gee_blog/initialize"
 	"github.com/Allen9012/gee_blog/utils/util"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
@@ -98,12 +98,12 @@ func GinLogger() gin.HandlerFunc {
 
 		if check_http_errorcode(responStatus) > 400 && check_http_errorcode(responStatus) <= 499 {
 			// 除了 StatusBadRequest 以外，warning 提示一下，常见的有 403 404，开发时都要注意
-			logger.Warn("HTTP Warning "+cast.ToString(responStatus), logFields...)
+			initialize.Warn("HTTP Warning "+cast.ToString(responStatus), logFields...)
 		} else if check_http_errorcode(responStatus) >= 500 && check_http_errorcode(responStatus) <= 599 {
 			// 除了内部错误，记录 error
-			logger.Error("HTTP Error "+cast.ToString(responStatus), logFields...)
+			initialize.Error("HTTP Error "+cast.ToString(responStatus), logFields...)
 		} else {
-			logger.Debug("HTTP Access Log", logFields...)
+			initialize.Debug("HTTP Access Log", logFields...)
 		}
 	}
 }

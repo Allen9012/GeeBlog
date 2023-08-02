@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/Allen9012/gee_blog/utils/logger"
+	"github.com/Allen9012/gee_blog/initialize"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"net"
@@ -40,7 +40,7 @@ func GinRecovery(stack bool) gin.HandlerFunc {
 				// 获取用户的请求信息,该方法只能用作debug mode
 				httpRequest, _ := httputil.DumpRequest(c.Request, false)
 				if brokenPipe {
-					logger.Error(c.Request.URL.Path,
+					initialize.Error(c.Request.URL.Path,
 						zap.Time("time", time.Now()),
 						zap.Any("error", err),
 						zap.String("request", string(httpRequest)),
@@ -52,14 +52,14 @@ func GinRecovery(stack bool) gin.HandlerFunc {
 				}
 				//	判断是否需要打印stack
 				if stack {
-					logger.Error("[Recovery from panic]",
+					initialize.Error("[Recovery from panic]",
 						zap.Time("time", time.Now()),               // 记录时间
 						zap.Any("error", err),                      // 记录错误信息
 						zap.String("request", string(httpRequest)), // 请求信息
 						zap.Stack("stacktrace"),                    // 调用堆栈信息
 					)
 				} else {
-					logger.Error("[Recovery from panic]",
+					initialize.Error("[Recovery from panic]",
 						zap.Time("time", time.Now()), // 记录时间
 						zap.Any("error", err),
 						zap.String("request", string(httpRequest)),

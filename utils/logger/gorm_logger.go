@@ -3,6 +3,7 @@ package logger
 import (
 	"context"
 	"errors"
+	. "github.com/Allen9012/gee_blog/common"
 	"github.com/Allen9012/gee_blog/utils/util"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
@@ -28,7 +29,7 @@ type GormLogger struct {
 
 func NewGormLogger() GormLogger {
 	return GormLogger{
-		ZapLogger:     Logger,
+		ZapLogger:     GEE_LOG,
 		SlowThreshold: 200 * time.Millisecond,
 	}
 }

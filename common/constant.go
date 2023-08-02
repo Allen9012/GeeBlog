@@ -1,5 +1,7 @@
 package common
 
+import "time"
+
 const (
 	RoleUser  = 0
 	RoleAdmin = 1
@@ -10,6 +12,8 @@ const (
 
 	KeyPostId = "post_id"
 
-	TokenHeader = "Authorization"
-	TokenEmpty  = ""
+	TokenHeader  = "Authorization"
+	TokenEmpty   = ""
+	TokenPrefix  = "login:token:"
+	TokenTimeout = time.Hour * 24
 )
